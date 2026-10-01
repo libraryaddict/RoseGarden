@@ -54,7 +54,7 @@ module.exports.main=function main(pageTextEncoded){
 		output+="<circle cx='"+(multiplier*poi.x+(multiplier*0.5))+"' cy='"+(multiplier*poi.y+(multiplier*0.5))+"' r='"+(multiplier*0.3)+"' fill='"+(poi.d==1?"silver":fill)+"' style='stroke-width:10;stroke:"+fill+"'/>";
 	}
 	
-	output+="<polygon points='"+(multiplier*data.pos.x+(multiplier*0.5))+","+(multiplier*data.pos.y+(multiplier*0.25))+" "+(multiplier*data.pos.x+(multiplier*0.75))+","+(multiplier*data.pos.y+(multiplier*0.75))+" "+(multiplier*data.pos.x+(multiplier*0.25))+","+(multiplier*data.pos.y+(multiplier*0.75))+"' style='fill:lime' transform='rotate("+(data.pos.f*(multiplier*90))+","+(multiplier*data.pos.x+(multiplier*0.5))+","+(multiplier*data.pos.y+(multiplier*0.5))+")'/>";
+	output+="<polygon points='"+(multiplier*data.pos.x+(multiplier*0.5))+","+(multiplier*data.pos.y+(multiplier*0.25))+" "+(multiplier*data.pos.x+(multiplier*0.75))+","+(multiplier*data.pos.y+(multiplier*0.75))+" "+(multiplier*data.pos.x+(multiplier*0.25))+","+(multiplier*data.pos.y+(multiplier*0.75))+"' style='fill:lime;stroke:black' transform='rotate("+(data.pos.f*90)+","+(multiplier*data.pos.x+(multiplier*0.5))+","+(multiplier*data.pos.y+(multiplier*0.5))+")'/>";
 	
 	const PLAQUE_OFFSETS=[[(multiplier*0.5),multiplier],[0,(multiplier*0.5)],[(multiplier*0.5),0],[multiplier,(multiplier*0.5)]];
 	output+="<style>.plaque{fill:#FF7F7F;font:"+(multiplier*0.6)+"px bolder;font-family:monospace;stroke:black;stroke-width:3px;paint-order:stroke}</style>";
