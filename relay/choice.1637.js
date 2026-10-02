@@ -162,7 +162,8 @@ module.exports.main = function main(pageTextEncoded) {
     kol.print("Map written to data/rose_garden_map.svg", "blue");
   }
 
-  let mapHash = 0;
+  // 1 to invalidate the hash
+  let mapHash = 1;
 
   let mapText =
     data.grid +
@@ -183,21 +184,28 @@ module.exports.main = function main(pageTextEncoded) {
     .replace(/\\/g, "\\\\")
     .replace(/ /g, "\\s")
     .replace(/(?:\\[\\s])+/g, (block) => " " + block + " ");
+  // Kmails are encoded, then KoL's backend is limiting them to 2k chars
+  let encoded = kol.entityEncode(escaped);
   let chunks = [];
 
-  for (let start = 0; start < escaped.length; ) {
-    // Kmails are capped at 2000 characters
-    let end = start + 1600;
+  for (let start = 0; start < encoded.length; ) {
+    let end = start + 1900;
+    let entityStart = encoded.lastIndexOf("&", end - 1);
+
+    // Go back if the part would cut an entity in half
+    if (entityStart > encoded.lastIndexOf(";", end - 1)) {
+      end = entityStart;
+    }
 
     // Keep going while the part would end inside or right after an escape
     while (
-      end < escaped.length &&
-      escaped.substring(end - 2, end).includes("\\")
+      end < encoded.length &&
+      encoded.substring(end - 2, end).includes("\\")
     ) {
       end++;
     }
 
-    chunks.push(escaped.substring(start, end));
+    chunks.push(kol.entityDecode(encoded.substring(start, end)));
     start = end;
   }
 
