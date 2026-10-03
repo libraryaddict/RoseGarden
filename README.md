@@ -6,6 +6,8 @@ This relay script will allow you to easily submit data for a spading initiative 
 
 The script also allows you to see the map of your garden and download it. Also to show the choices that KoL added for device compatibility, because walking is just too much.
 
+This script is an expanded modification of @VeeArrKoL's original Rose Garden script.
+
 # Install
 
 This script requires KoLMafia to run, and you can install this script by typing into KoLMafia gCLI:
